@@ -95,6 +95,94 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 ...
 ```
 
+## Configure the minimum TLS version
+
+Set the minimum TLS version before making API requests:
+
+```javascript
+const kc = new k8s.KubeConfig();
+kc.loadFromDefault();
+kc.setTLSMinVersion('TLSv1.3');
+const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
+```
+
+`setTLSMinVersion` accepts Node.js TLS version names (`TLSv1`, `TLSv1.1`, `TLSv1.2`, or `TLSv1.3`).
+The setting applies to API-server TLS connections, including direct connections and connections
+through HTTP(S) or SOCKS proxies. It does not configure TLS to the proxy itself.
+When unset, or reset with `kc.setTLSMinVersion(undefined)`, the Node.js runtime default is preserved
+(including command-line TLS settings); the client does not impose its own minimum.
+Calling `setTLSMinVersion` destroys cached agents and their sockets, which can abort in-flight
+requests. Configure it before starting requests.
+
+## Call APIs with protocol buffers
+
+```javascript
+const k8s = require('@kubernetes/client-node');
+
+const kc = new k8s.KubeConfig();
+kc.loadFromDefault();
+
+const protoClient = new k8s.ProtoClient(kc);
+const result = await protoClient.get(k8s.MetaV1.Status.decode, '/version');
+
+if (result.status) {
+    console.log(result.status.message);
+} else {
+    console.log(result.object);
+}
+```
+
+`ProtoClient` uses Kubernetes protocol-buffer framing (`application/vnd.kubernetes.protobuf`) and
+returns either the decoded object (`result.object`) or a decoded `v1.Status` (`result.status`).
+The bundled protobuf files are generated from Kubernetes proto definitions with:
+
+```bash
+npm run generate:proto
+```
+
+`generate-protobuf.sh` fetches and uses upstream `kubernetes-client/gen/proto/generate.sh`
+and `dependencies.sh` directly so the proto source list stays in sync.
+
+## Exec credential plugin policy
+
+Kubeconfig `exec` credential plugins start local processes. By default all plugins are allowed,
+so only load trusted kubeconfigs. Applications can restrict which plugins may run with the same
+policy that kubectl reads from its [kuberc](https://kubernetes.io/docs/reference/kubectl/kuberc/#credential-plugin-policy)
+file:
+
+```javascript
+const kc = new k8s.KubeConfig();
+kc.loadFromDefault();
+
+// Never run exec plugins
+kc.setExecCredentialPluginPolicy({ credentialPluginPolicy: 'DenyAll' });
+
+// Only run approved plugins, by basename or full path
+kc.setExecCredentialPluginPolicy({
+    credentialPluginPolicy: 'Allowlist',
+    credentialPluginAllowlist: [{ command: 'kubelogin' }, { command: '/usr/local/bin/my-trusted-plugin' }],
+});
+
+// Or use the policy from the user's kuberc file ($KUBERC or ~/.kube/kuberc)
+kc.loadExecCredentialPluginPolicyFromKuberc();
+```
+
+The policy semantics match kubectl:
+
+- An unspecified or empty `credentialPluginPolicy` is the same as `AllowAll`.
+- `credentialPluginAllowlist` is required (and must be non-empty) for `Allowlist`, and is an error for any other
+  policy. Entries must specify a non-empty `command` (the deprecated `name` alias is accepted, but not both).
+- A plugin is allowed if its command exactly matches an allowlist entry, or if both resolve to the same executable
+  using `PATH`. Neither symlinks nor shell globs are resolved.
+- In `Allowlist` mode the resolved full path of the plugin is executed, so the plugin `env` from the kubeconfig cannot
+  change which executable is started. Plugin arguments and environment are not otherwise restricted.
+- Denied plugins throw an `ExecCredentialPluginDeniedError` before any process is started; the policy is checked
+  for the initial execution and every token refresh.
+- `KUBERC=off` or `KUBECTL_KUBERC=false` disables loading the kuberc file.
+
+This policy is a defense-in-depth measure, not a sandbox. Allowing an interpreter or other general purpose launcher
+can permit arbitrary code execution.
+
 # Documentation
 
 📖 **[View Documentation](https://kubernetes-client.github.io/javascript/)**
@@ -120,7 +208,7 @@ npm start          # opens http://localhost:3000 with hot-reload
 
 `npm start` automatically runs the `prestart` hook which generates the API
 reference, SDK docs, and model pages from source before launching the dev
-server.  Changes to hand-written docs (e.g. `docs/docs/examples/`) are
+server. Changes to hand-written docs (e.g. `docs/docs/examples/`) are
 reflected instantly; changes to the generated sources require restarting the
 server.
 
@@ -132,44 +220,70 @@ npm run build      # generates + builds static site into docs/build/
 npm run serve      # preview the production build at http://localhost:3000
 ```
 
+## Cancelling exec credential authentication
+
+`KubeConfig.applyToHTTPSOptions()` passes an optional `signal` to exec credential
+authentication. For generated API calls, set the signal on `RequestContext`
+before authentication, for example through `BaseServerConfiguration.makeRequestContext()`.
+Setting it in request middleware is too late: middleware runs after authentication.
+The same signal can bound authentication and the subsequent HTTP request.
+
+A cancelled operation rejects after its credential process closes, does not cache
+the cancelled result, and does not project cached credentials onto that request.
+On POSIX, a signal-bound credential process runs in an owned process group, which
+is terminated on cancellation together with children that remain in that group.
+Windows cancellation terminates the direct credential process; process-tree
+termination on Windows is not provided. Calls without a signal retain their
+existing execution and credential caching behavior.
+
 There are several more JS and TS examples in the [examples](https://github.com/kubernetes-client/javascript/tree/main/examples) directory.
 
 # Compatibility
 
-Prior to the `0.13.0` release, release versions did not track Kubernetes versions. Starting with the `0.13.0`
-release, we will increment the minor version whenever we update the minor Kubernetes API version
-(e.g. `1.19.x`) that this library is generated from.
+## Package versioning
 
-`request` was migrated to `node-fetch` as the HTTP(S) backend for release `1.0.0` tracked in #754
+Client releases follow [Semantic Versioning](https://semver.org/):
 
-`node-fetch` was migrated to `undici` which is the native node.js fetch package for release `2.0.0` tracked in #2306
+- **Major:** new Kubernetes API targets and incompatible client changes. Regeneration may remove
+  exported clients or models and change existing TypeScript types.
+- **Minor:** backward-compatible features.
+- **Patch:** backward-compatible bug and security fixes.
 
-Generally speaking newer clients will work with older Kubernetes, but compatibility isn't 100% guaranteed.
+We align major client releases with new Kubernetes API targets, as discussed in
+[#2582](https://github.com/kubernetes-client/javascript/issues/2582#issuecomment-3145057737).
+Client and Kubernetes version numbers do not match. Check the release notes when upgrading majors.
 
-| client version | older versions | 1.28 | 1.29 | 1.30 | 1.31 | 1.32 | 1.33 | 1.34 |
-| -------------- | -------------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| 0.19.x         | -              | ✓    | x    | x    | x    | x    | x    | x    |
-| 0.20.x         | -              | +    | ✓    | x    | x    | x    | x    | x    |
-| 0.21.x         | -              | +    | +    | ✓    | x    | x    | x    | x    |
-| 0.22.x         | -              | +    | +    | +    | ✓    | x    | x    | x    |
-| 1.0.x          | -              | +    | +    | +    | +    | ✓    | x    | x    |
-| 1.1.x          | -              | +    | +    | +    | +    | ✓    | x    | x    |
-| 1.2.x          | -              | +    | +    | +    | +    | +    | ✓    | x    |
-| 1.3.x          | -              | +    | +    | +    | +    | +    | ✓    | x    |
-| 1.4.x          | -              | +    | +    | +    | +    | +    | +    | ✓    |
+The [1.0.0 release](https://github.com/kubernetes-client/javascript/releases/tag/1.0.0) migrated from
+`request` to `node-fetch` and became ESM-only. The
+[2.0.0 release](https://github.com/kubernetes-client/javascript/releases/tag/2.0.0) migrated from
+`node-fetch` to the npm `undici` package and changed supported Node.js versions.
 
-Key:
+## Generated Kubernetes API targets
 
-- `✓` Exactly the same features / API objects in both javascript-client and the Kubernetes
-  version.
-- `+` javascript-client has features or api objects that may not be present in the
-  Kubernetes cluster, but everything they have in common will work.
-- `-` The Kubernetes cluster has features the javascript-client library can't use
-  (additional API objects, etc).
-- `x` The Kubernetes cluster has no guarantees to support the API client of
-  this version, as it only promises _n_-2 version support. It is not tested,
-  and operations using API versions that have been deprecated and removed in
-  later server versions won't function correctly.
+This table lists the Kubernetes API specification used to generate each client version.
+
+| Client version | Generated Kubernetes API target |
+| -------------- | ------------------------------- |
+| 0.19.0         | 1.27                            |
+| 0.20.0         | 1.28                            |
+| 0.21.0         | 1.29                            |
+| 0.22.0         | 1.30                            |
+| 1.0.0          | 1.32                            |
+| 1.1.2          | 1.32                            |
+| 1.2.0          | 1.33                            |
+| 1.3.0          | 1.33                            |
+| 1.4.0          | 1.34                            |
+| 2.0.0–2.0.2    | 1.36                            |
+| 3.0.0          | 1.37                            |
+
+## Compatibility with clusters
+
+Clients generally work with older or newer clusters when both support the APIs your application
+uses. New APIs may be unavailable on older clusters, and deprecated APIs may be removed from newer
+clusters or clients. The generation targets above do not guarantee compatibility with every cluster.
+
+See the [Kubernetes API deprecation policy](https://kubernetes.io/docs/reference/using-api/deprecation-policy/)
+and client release notes, and test against the cluster versions your application supports.
 
 # Known Issues
 

@@ -28,6 +28,11 @@ import {
     User,
 } from './config_types.js';
 import { ExecAuth } from './exec_auth.js';
+import {
+    ExecCredentialPluginPolicy,
+    parseKubercExecCredentialPluginPolicy,
+    validateExecCredentialPluginPolicy,
+} from './exec_credential_policy.js';
 import { FileAuth } from './file_auth.js';
 import { GoogleCloudPlatformAuth } from './gcp_auth.js';
 import {
@@ -135,10 +140,13 @@ function createSocksConnector(proxyUrl: string, tlsOptions: tls.ConnectionOption
 export interface ApiType {}
 
 export class KubeConfig implements SecurityAuthentication {
+    private execAuth: ExecAuth = new ExecAuth();
+    private tlsMinVersion?: tls.SecureVersion;
+
     private authenticators: Authenticator[] = [
         new AzureAuth(),
         new GoogleCloudPlatformAuth(),
-        new ExecAuth(),
+        this.execAuth,
         new FileAuth(),
         new OpenIDConnectAuth(),
     ];
@@ -156,6 +164,72 @@ export class KubeConfig implements SecurityAuthentication {
     // before you load a kubeconfig file that references them.
     public addAuthenticator(authenticator: Authenticator): void {
         this.custom_authenticators.push(authenticator);
+    }
+
+    /**
+     * Sets the minimum TLS version for API connections. Configure before making requests.
+     * Destroys cached agents and their sockets, which can abort in-flight requests.
+     * @param minVersion undefined preserves the Node.js runtime default.
+     */
+    public setTLSMinVersion(minVersion?: tls.SecureVersion): void {
+        this.tlsMinVersion = minVersion;
+        for (const agent of this.agentCache.values()) {
+            agent.destroy();
+        }
+        this.agentCache.clear();
+    }
+
+    /**
+     * Sets the application policy for kubeconfig `exec` credential plugins.
+     * The semantics match the `credentialPluginPolicy` and `credentialPluginAllowlist`
+     * fields of a kubectl kuberc file, see https://kubernetes.io/docs/reference/kubectl/kuberc/
+     * The policy is checked before every plugin execution, including token refreshes.
+     * @param policy the policy, undefined restores the default `AllowAll` behavior.
+     * @throws Error if the policy is misconfigured.
+     */
+    public setExecCredentialPluginPolicy(policy?: ExecCredentialPluginPolicy): void {
+        validateExecCredentialPluginPolicy(policy);
+        this.execAuth.setPolicy(policy);
+    }
+
+    /**
+     * Loads the exec credential plugin policy from a kubectl kuberc file and applies it
+     * with `setExecCredentialPluginPolicy`.
+     *
+     * If `file` is not given, the file is located the same way kubectl does: the `KUBERC`
+     * environment variable if set, otherwise `$HOME/.kube/kuberc`. Setting `KUBERC=off` or
+     * `KUBECTL_KUBERC=false` disables loading, in which case the current policy is unchanged.
+     * A missing default kuberc file is not an error, a missing explicitly specified file is.
+     * @param file optional path to the kuberc file.
+     * @returns the loaded policy, or undefined if no kuberc file was loaded.
+     */
+    public loadExecCredentialPluginPolicyFromKuberc(
+        file?: string,
+        platform: string = process.platform,
+    ): ExecCredentialPluginPolicy | undefined {
+        let kubercFile = file;
+        let required = true;
+        if (!kubercFile) {
+            if (process.env.KUBECTL_KUBERC === 'false' || process.env.KUBERC === 'off') {
+                return undefined;
+            }
+            if (process.env.KUBERC) {
+                kubercFile = process.env.KUBERC;
+            } else {
+                const home = findHomeDir(platform);
+                if (!home) {
+                    return undefined;
+                }
+                kubercFile = path.join(home, '.kube', 'kuberc');
+                required = false;
+            }
+        }
+        if (!required && !fileExists(kubercFile)) {
+            return undefined;
+        }
+        const policy = parseKubercExecCredentialPluginPolicy(fs.readFileSync(kubercFile).toString('utf-8'));
+        this.setExecCredentialPluginPolicy(policy);
+        return policy;
     }
 
     /**
@@ -262,6 +336,9 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.key = opts.key;
         agentOptions.pfx = opts.pfx;
         agentOptions.passphrase = opts.passphrase;
+        if (opts.minVersion !== undefined) {
+            agentOptions.minVersion = opts.minVersion;
+        }
         // Only set rejectUnauthorized if explicitly configured. When not set, fetch will use NODE_TLS_REJECT_UNAUTHORIZED env var
         if (opts.rejectUnauthorized !== undefined) {
             agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
@@ -293,7 +370,7 @@ export class KubeConfig implements SecurityAuthentication {
         const user = this.getCurrentUser();
 
         const agentOptions: https.AgentOptions = {};
-        const httpsOptions: https.RequestOptions = {};
+        const httpsOptions: https.RequestOptions = { signal: context.getSignal() };
 
         await this.applyOptions(httpsOptions);
 
@@ -314,6 +391,9 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.key = httpsOptions.key;
         agentOptions.pfx = httpsOptions.pfx;
         agentOptions.passphrase = httpsOptions.passphrase;
+        if (httpsOptions.minVersion !== undefined) {
+            agentOptions.minVersion = httpsOptions.minVersion;
+        }
         // Only set rejectUnauthorized if explicitly configured. When not set, fetch will use NODE_TLS_REJECT_UNAUTHORIZED env var
         if (httpsOptions.rejectUnauthorized !== undefined) {
             agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
@@ -658,6 +738,7 @@ export class KubeConfig implements SecurityAuthentication {
         if (agentOptions.key !== undefined) tlsOptions.key = agentOptions.key;
         if (agentOptions.pfx !== undefined) tlsOptions.pfx = agentOptions.pfx;
         if (agentOptions.passphrase !== undefined) tlsOptions.passphrase = agentOptions.passphrase;
+        if (agentOptions.minVersion !== undefined) tlsOptions.minVersion = agentOptions.minVersion;
         if (agentOptions.rejectUnauthorized !== undefined)
             tlsOptions.rejectUnauthorized = agentOptions.rejectUnauthorized;
         if ((agentOptions as any).servername !== undefined)
@@ -710,6 +791,9 @@ export class KubeConfig implements SecurityAuthentication {
     }
 
     private applyHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): void {
+        if (this.tlsMinVersion !== undefined) {
+            opts.minVersion = this.tlsMinVersion;
+        }
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
         if (!user) {

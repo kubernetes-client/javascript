@@ -53,7 +53,7 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/cronjobs'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -134,7 +134,7 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/jobs'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -232,7 +232,7 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/cronjobs'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -385,7 +385,7 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/jobs'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -527,8 +527,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -625,8 +625,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/jobs/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -981,7 +981,7 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/cronjobs'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1102,7 +1102,7 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/jobs'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1223,8 +1223,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1329,8 +1329,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1435,8 +1435,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/jobs/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1541,8 +1541,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/jobs/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1632,8 +1632,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1684,8 +1684,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1736,8 +1736,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/jobs/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1788,8 +1788,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/jobs/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1853,8 +1853,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -1942,8 +1942,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2031,8 +2031,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/jobs/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2120,8 +2120,8 @@ export class BatchV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/batch/v1/namespaces/{namespace}/jobs/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);

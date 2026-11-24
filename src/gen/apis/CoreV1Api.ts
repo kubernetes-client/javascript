@@ -79,8 +79,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -138,9 +138,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -191,8 +191,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -250,9 +250,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -296,7 +296,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -347,8 +347,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -407,8 +407,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/attach'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -489,8 +489,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/exec'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -566,8 +566,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/portforward'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -618,8 +618,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -677,9 +677,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -730,8 +730,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -789,9 +789,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -835,7 +835,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -886,8 +886,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -938,8 +938,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.HEAD);
@@ -997,9 +997,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.HEAD);
@@ -1050,8 +1050,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.HEAD);
@@ -1109,9 +1109,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.HEAD);
@@ -1155,7 +1155,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.HEAD);
@@ -1206,8 +1206,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.HEAD);
@@ -1258,8 +1258,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.OPTIONS);
@@ -1317,9 +1317,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.OPTIONS);
@@ -1370,8 +1370,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.OPTIONS);
@@ -1429,9 +1429,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.OPTIONS);
@@ -1475,7 +1475,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.OPTIONS);
@@ -1526,8 +1526,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.OPTIONS);
@@ -1578,8 +1578,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1637,9 +1637,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1690,8 +1690,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1749,9 +1749,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1795,7 +1795,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1846,8 +1846,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1906,8 +1906,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/attach'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -1988,8 +1988,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/exec'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -2065,8 +2065,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/portforward'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -2117,8 +2117,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -2176,9 +2176,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -2229,8 +2229,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -2288,9 +2288,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -2334,7 +2334,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -2385,8 +2385,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -2437,8 +2437,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2496,9 +2496,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2549,8 +2549,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2608,9 +2608,9 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2654,7 +2654,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2705,8 +2705,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/proxy/{path}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{path}', encodeURIComponent(String(path)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2836,7 +2836,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/bindings'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -2917,7 +2917,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/configmaps'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -2998,7 +2998,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/endpoints'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3079,7 +3079,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/events'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3160,7 +3160,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/limitranges'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3241,7 +3241,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/persistentvolumeclaims'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3322,7 +3322,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3410,8 +3410,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/binding'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3499,8 +3499,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/eviction'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3581,7 +3581,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/podtemplates'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3662,7 +3662,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3743,7 +3743,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/resourcequotas'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3824,7 +3824,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/secrets'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3905,7 +3905,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -3986,7 +3986,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/serviceaccounts'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -4074,8 +4074,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/serviceaccounts/{name}/token'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -4319,7 +4319,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/configmaps'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -4472,7 +4472,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/endpoints'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -4625,7 +4625,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/events'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -4778,7 +4778,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/limitranges'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -4931,7 +4931,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/persistentvolumeclaims'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -5084,7 +5084,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -5237,7 +5237,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/podtemplates'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -5390,7 +5390,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -5543,7 +5543,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/resourcequotas'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -5696,7 +5696,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/secrets'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -5849,7 +5849,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -6002,7 +6002,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/serviceaccounts'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -6427,7 +6427,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -6524,8 +6524,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/configmaps/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -6622,8 +6622,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/endpoints/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -6720,8 +6720,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/events/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -6818,8 +6818,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/limitranges/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -6916,8 +6916,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -7014,8 +7014,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -7112,8 +7112,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/podtemplates/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -7210,8 +7210,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -7308,8 +7308,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/resourcequotas/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -7406,8 +7406,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/secrets/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -7504,8 +7504,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -7602,8 +7602,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/serviceaccounts/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -7693,7 +7693,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -7783,7 +7783,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/persistentvolumes/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -8590,7 +8590,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/configmaps'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -8711,7 +8711,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/endpoints'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -8832,7 +8832,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/events'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -8953,7 +8953,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/limitranges'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -9074,7 +9074,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/persistentvolumeclaims'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -9195,7 +9195,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -9316,7 +9316,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/podtemplates'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -9437,7 +9437,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -9558,7 +9558,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/resourcequotas'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -9679,7 +9679,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/secrets'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -9800,7 +9800,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -9921,7 +9921,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/serviceaccounts'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -11165,7 +11165,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -11263,7 +11263,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -11368,8 +11368,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/configmaps/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -11474,8 +11474,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/endpoints/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -11580,8 +11580,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/events/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -11686,8 +11686,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/limitranges/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -11792,8 +11792,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -11898,8 +11898,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -12004,8 +12004,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -12110,8 +12110,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/ephemeralcontainers'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -12216,8 +12216,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/resize'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -12322,8 +12322,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -12428,8 +12428,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/podtemplates/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -12534,8 +12534,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -12640,8 +12640,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/scale'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -12746,8 +12746,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -12852,8 +12852,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/resourcequotas/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -12958,8 +12958,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/resourcequotas/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -13064,8 +13064,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/secrets/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -13170,8 +13170,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -13276,8 +13276,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/serviceaccounts/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -13382,8 +13382,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -13481,7 +13481,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -13579,7 +13579,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -13677,7 +13677,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/persistentvolumes/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -13775,7 +13775,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/persistentvolumes/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -13858,7 +13858,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/componentstatuses/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -13902,7 +13902,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -13946,7 +13946,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -13997,8 +13997,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/configmaps/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14049,8 +14049,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/endpoints/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14101,8 +14101,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/events/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14153,8 +14153,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/limitranges/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14205,8 +14205,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14257,8 +14257,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14309,8 +14309,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14361,8 +14361,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/ephemeralcontainers'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14431,8 +14431,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/log'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14528,8 +14528,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/resize'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14580,8 +14580,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14632,8 +14632,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/podtemplates/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14684,8 +14684,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14736,8 +14736,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/scale'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14788,8 +14788,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14840,8 +14840,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/resourcequotas/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14892,8 +14892,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/resourcequotas/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14944,8 +14944,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/secrets/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -14996,8 +14996,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -15048,8 +15048,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/serviceaccounts/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -15100,8 +15100,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -15145,7 +15145,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -15189,7 +15189,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -15233,7 +15233,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/persistentvolumes/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -15277,7 +15277,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/persistentvolumes/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -15334,7 +15334,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -15415,7 +15415,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{name}/finalize'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -15496,7 +15496,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -15584,8 +15584,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/configmaps/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -15673,8 +15673,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/endpoints/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -15762,8 +15762,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/events/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -15851,8 +15851,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/limitranges/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -15940,8 +15940,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -16029,8 +16029,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -16118,8 +16118,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -16207,8 +16207,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/ephemeralcontainers'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -16296,8 +16296,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/resize'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -16385,8 +16385,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/pods/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -16474,8 +16474,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/podtemplates/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -16563,8 +16563,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -16652,8 +16652,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/scale'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -16741,8 +16741,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -16830,8 +16830,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/resourcequotas/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -16919,8 +16919,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/resourcequotas/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -17008,8 +17008,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/secrets/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -17097,8 +17097,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -17186,8 +17186,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/serviceaccounts/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -17275,8 +17275,8 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/namespaces/{namespace}/services/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -17357,7 +17357,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -17438,7 +17438,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/nodes/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -17519,7 +17519,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/persistentvolumes/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -17600,7 +17600,7 @@ export class CoreV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/api/v1/persistentvolumes/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);

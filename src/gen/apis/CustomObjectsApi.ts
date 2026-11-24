@@ -62,9 +62,9 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -166,10 +166,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -266,10 +266,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}/{name}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -363,9 +363,9 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -478,10 +478,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -600,11 +600,11 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -677,8 +677,8 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -736,10 +736,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}/{name}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -797,10 +797,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}/{name}/scale'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -858,10 +858,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}/{name}/status'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -926,11 +926,11 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -995,11 +995,11 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}/scale'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1064,11 +1064,11 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}/status'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1139,9 +1139,9 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1262,9 +1262,9 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{resource_plural}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'resource_plural' + '}', encodeURIComponent(String(resourcePlural)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{resource_plural}', encodeURIComponent(String(resourcePlural)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1392,10 +1392,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1518,10 +1518,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}/{name}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1627,10 +1627,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}/{name}/scale'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1736,10 +1736,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}/{name}/status'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1852,11 +1852,11 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1969,11 +1969,11 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}/scale'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -2088,11 +2088,11 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}/status'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -2198,10 +2198,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}/{name}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2296,10 +2296,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}/{name}/scale'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2394,10 +2394,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/{plural}/{name}/status'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2499,11 +2499,11 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2605,11 +2605,11 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}/scale'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -2711,11 +2711,11 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}/status'
-            .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
-            .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{group}', encodeURIComponent(String(group)))
+            .replace('{version}', encodeURIComponent(String(version)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)))
+            .replace('{plural}', encodeURIComponent(String(plural)))
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);

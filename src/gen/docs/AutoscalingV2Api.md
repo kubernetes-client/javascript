@@ -226,6 +226,7 @@ const request: AutoscalingV2ApiCreateNamespacedHorizontalPodAutoscalerRequest = 
         {
           lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
           message: "message_example",
+          observedGeneration: 1,
           reason: "reason_example",
           status: "status_example",
           type: "type_example",
@@ -1302,6 +1303,7 @@ const request: AutoscalingV2ApiReplaceNamespacedHorizontalPodAutoscalerRequest =
         {
           lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
           message: "message_example",
+          observedGeneration: 1,
           reason: "reason_example",
           status: "status_example",
           type: "type_example",
@@ -1673,6 +1675,7 @@ const request: AutoscalingV2ApiReplaceNamespacedHorizontalPodAutoscalerStatusReq
         {
           lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
           message: "message_example",
+          observedGeneration: 1,
           reason: "reason_example",
           status: "status_example",
           type: "type_example",

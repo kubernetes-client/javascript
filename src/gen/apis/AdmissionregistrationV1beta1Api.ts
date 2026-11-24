@@ -488,7 +488,7 @@ export class AdmissionregistrationV1beta1ApiRequestFactory extends BaseAPIReques
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -578,7 +578,7 @@ export class AdmissionregistrationV1beta1ApiRequestFactory extends BaseAPIReques
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -926,7 +926,7 @@ export class AdmissionregistrationV1beta1ApiRequestFactory extends BaseAPIReques
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1024,7 +1024,7 @@ export class AdmissionregistrationV1beta1ApiRequestFactory extends BaseAPIReques
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1107,7 +1107,7 @@ export class AdmissionregistrationV1beta1ApiRequestFactory extends BaseAPIReques
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1151,7 +1151,7 @@ export class AdmissionregistrationV1beta1ApiRequestFactory extends BaseAPIReques
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1208,7 +1208,7 @@ export class AdmissionregistrationV1beta1ApiRequestFactory extends BaseAPIReques
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -1289,7 +1289,7 @@ export class AdmissionregistrationV1beta1ApiRequestFactory extends BaseAPIReques
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);

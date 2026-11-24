@@ -1,4 +1,4 @@
-import { describe, it } from 'node:test';
+import { describe, it, type TestContext } from 'node:test';
 import { deepStrictEqual, notStrictEqual, ok, strictEqual, throws } from 'node:assert';
 import mock from 'ts-mockito';
 
@@ -10,6 +10,7 @@ import { ListPromise } from './informer.js';
 
 import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from 'undici';
 import { Watch } from './watch.js';
+import { deferred } from './test/deferred.js';
 
 const server = 'https://foo.company.com';
 
@@ -1076,21 +1077,17 @@ describe('ListWatchCache', () => {
                 resolve(listObj);
             });
         };
-        const promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                resolve(new AbortController());
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
 
-        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
-        await promise;
+        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
+        await cache.start();
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
         // stop the informer
-        cache.stop();
+        await cache.stop();
 
         await doneHandler(null);
 
@@ -1106,7 +1103,7 @@ describe('ListWatchCache', () => {
         ).twice();
     });
 
-    it('does not auto-restart after an error', async () => {
+    it('does not auto-restart after a non-retryable error', async () => {
         const fakeWatch = mock.mock(Watch);
         const list: V1Pod[] = [
             {
@@ -1134,23 +1131,19 @@ describe('ListWatchCache', () => {
                 resolve(listObj);
             });
         };
-        const promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                resolve(new AbortController());
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
 
-        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
-        await promise;
+        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
+        await cache.start();
 
         let errorEmitted = false;
         cache.on('error', () => (errorEmitted = true));
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
-        const error = new Error('testing');
+        const error = Object.assign(new Error('Bad Request'), { statusCode: 400 });
         await doneHandler(error);
 
         mock.verify(
@@ -1176,17 +1169,12 @@ describe('ListWatchCache', () => {
                 resolve(listObj);
             });
         };
-        let promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                resolve(new AbortController());
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
 
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
         watchHandler(
@@ -1201,15 +1189,7 @@ describe('ListWatchCache', () => {
         );
 
         await informer.stop();
-        promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                resolve(new AbortController());
-            });
-        });
-        informer.start();
-        await promise;
+        await informer.start();
         strictEqual(listCalls, 1);
     });
 
@@ -1230,18 +1210,13 @@ describe('ListWatchCache', () => {
                 resolve(listObj);
             });
         };
-        let promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                resolve(new AbortController());
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
 
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
 
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
         watchHandler(
@@ -1260,18 +1235,9 @@ describe('ListWatchCache', () => {
         let errorEmitted = false;
         informer.on('error', () => (errorEmitted = true));
 
-        promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                resolve({});
-            });
-        });
+        await informer.start();
 
-        informer.start();
-        await promise;
-
-        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+        const [, , watchHandler2, doneHandler] = mock.capture(fakeWatch.watch).last();
 
         const object = {
             kind: 'Status',
@@ -1282,7 +1248,7 @@ describe('ListWatchCache', () => {
             reason: 'Expired',
             code: 410,
         };
-        await watchHandler('ERROR', object, { type: 'ERROR', object });
+        await watchHandler2('ERROR', object, { type: 'ERROR', object });
         await doneHandler(null);
 
         mock.verify(
@@ -1307,18 +1273,13 @@ describe('ListWatchCache', () => {
                 } as V1NamespaceList);
             });
         };
-        let promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                resolve({});
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
 
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
 
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
         watchHandler(
@@ -1337,16 +1298,7 @@ describe('ListWatchCache', () => {
         let errorEmitted = false;
         informer.on('error', () => (errorEmitted = true));
 
-        promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                resolve(new AbortController());
-            });
-        });
-
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
@@ -1378,18 +1330,13 @@ describe('ListWatchCache', () => {
                 resolve(listObj);
             });
         };
-        let promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                resolve(new AbortController());
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
 
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
 
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
         watchHandler(
@@ -1409,25 +1356,16 @@ describe('ListWatchCache', () => {
         let errorEmitted = false;
         informer.on('error', () => (errorEmitted = true));
 
-        promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                resolve(new AbortController());
-            });
-        });
-
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , watchHandler2, doneHandler] = mock.capture(fakeWatch.watch).last();
         watchHandler2('ERROR', {
             code: 410,
         });
-        doneHandler(undefined);
+        await doneHandler(undefined);
         mock.verify(
             fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-        ).twice();
+        ).thrice();
         strictEqual(errorEmitted, false);
         strictEqual(listCalls, 2);
     });
@@ -1505,14 +1443,11 @@ describe('ListWatchCache', () => {
 
         await informer.start();
 
-        let doneResolve: any;
-        const donePromise = new Promise((resolve) => {
-            doneResolve = resolve;
-        });
+        const done = deferred<V1Namespace>();
 
-        informer.on('add', doneResolve);
+        informer.on('add', done.resolve);
 
-        const value = await donePromise;
+        const value = await done.promise;
 
         deepStrictEqual(value, {
             metadata: {
@@ -1523,6 +1458,7 @@ describe('ListWatchCache', () => {
             },
         });
 
+        await informer.stop();
         mockAgent.assertNoPendingInterceptors();
     });
 
@@ -1685,6 +1621,233 @@ describe('ListWatchCache', () => {
         strictEqual(watchCalls, 2);
         strictEqual(errorEmitted, false);
     });
+
+    it('should reconnect with backoff after a retryable watch error', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+        const listFn: ListPromise<V1Namespace> = () => Promise.resolve(listObj);
+
+        let watchCalls = 0;
+        const delays: number[] = [];
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(() => {
+            watchCalls++;
+            return Promise.resolve(new AbortController());
+        });
+
+        const informer = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            false,
+            undefined,
+            undefined,
+            {
+                delayFn: (ms: number) => {
+                    delays.push(ms);
+                    return Promise.resolve();
+                },
+                randFn: () => 0,
+            },
+        );
+        const errors: Error[] = [];
+        informer.on('error', (err) => errors.push(err));
+        await informer.start();
+
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+        const error = Object.assign(new Error('Service Unavailable'), { statusCode: 503 });
+        await doneHandler(error);
+
+        strictEqual(watchCalls, 2);
+        deepStrictEqual(delays, [800]);
+        deepStrictEqual(errors, [error]);
+    });
+
+    it('should retry the initial list with backoff after a retryable error', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+        const error = Object.assign(new Error('Too Many Requests'), { code: 429 });
+        let listCalls = 0;
+        const listFn: ListPromise<V1Namespace> = () => {
+            listCalls++;
+            return listCalls === 1 ? Promise.reject(error) : Promise.resolve(listObj);
+        };
+        const delays: number[] = [];
+        let watchCalls = 0;
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(() => {
+            watchCalls++;
+            return Promise.resolve(new AbortController());
+        });
+
+        const informer = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            false,
+            undefined,
+            undefined,
+            {
+                delayFn: (ms: number) => {
+                    delays.push(ms);
+                    return Promise.resolve();
+                },
+                randFn: () => 0,
+            },
+        );
+        const errors: Error[] = [];
+        informer.on('error', (err) => errors.push(err));
+
+        await informer.start();
+
+        strictEqual(listCalls, 2);
+        strictEqual(watchCalls, 1);
+        deepStrictEqual(delays, [800]);
+        deepStrictEqual(errors, [error]);
+    });
+
+    function lifecycleCache(
+        t: TestContext,
+        options: {
+            list?: ListPromise<V1Namespace>;
+            delay?: () => Promise<void>;
+            connect?: (controller: AbortController) => Promise<AbortController>;
+        } = {},
+    ) {
+        const watches: {
+            controller: AbortController;
+            event: Parameters<Watch['watch']>[2];
+            done: Parameters<Watch['watch']>[3];
+        }[] = [];
+        const watch = new Watch(new KubeConfig());
+        t.mock.method(watch, 'watch', async (_path, _query, event, done) => {
+            const controller = new AbortController();
+            watches.push({ controller, event, done });
+            return options.connect ? options.connect(controller) : controller;
+        });
+        const informer = new ListWatch<V1Namespace>(
+            '/some/path',
+            watch,
+            options.list ?? (async () => ({ metadata: { resourceVersion: '12345' }, items: [] })),
+            false,
+            undefined,
+            undefined,
+            { delayFn: options.delay ?? (() => Promise.resolve()), randFn: () => 0 },
+        );
+        t.after(() => informer.stop());
+        return { informer, watches };
+    }
+
+    it('should discard a pending retry after stopping and starting again', async (t) => {
+        const retryGate = deferred();
+        const retryEntered = deferred();
+        const { informer, watches } = lifecycleCache(t, {
+            delay: () => {
+                retryEntered.resolve();
+                return retryGate.promise;
+            },
+        });
+        await informer.start();
+        const oldWatch = watches[0];
+        const retry = oldWatch.done({ statusCode: 503 });
+        await retryEntered.promise;
+
+        await informer.stop();
+        await informer.start();
+
+        // The old retry must not see the new run's stopped=false as permission to reconnect.
+        retryGate.resolve();
+        await retry;
+        strictEqual(watches.length, 2);
+        strictEqual(oldWatch.controller.signal.aborted, true);
+        strictEqual(watches[1].controller.signal.aborted, false);
+
+        // Late callbacks must not mutate or stop the new run either.
+        oldWatch.event('ADDED', { metadata: { name: 'stale-event', resourceVersion: '99999' } });
+        await oldWatch.done(null);
+        strictEqual(informer.get('stale-event'), undefined);
+        strictEqual(watches[1].controller.signal.aborted, false);
+        await informer.stop();
+        ok(watches.every(({ controller }) => controller.signal.aborted));
+    });
+
+    it('should discard a retried relist that completes after stopping', async (t) => {
+        const pendingList = deferred<V1NamespaceList>();
+        const listEntered = deferred();
+        let listCalls = 0;
+        const { informer, watches } = lifecycleCache(t, {
+            list: async () => {
+                listCalls++;
+                if (listCalls === 1) {
+                    return { metadata: { resourceVersion: '12345' }, items: [] };
+                }
+                if (listCalls === 2) {
+                    throw Object.assign(new Error('Service Unavailable'), { statusCode: 503 });
+                }
+                listEntered.resolve();
+                return pendingList.promise;
+            },
+        });
+        const changes: V1Namespace[] = [];
+        informer.on('change', (obj) => changes.push(obj));
+        await informer.start();
+        const reconnecting = watches[0].done({ statusCode: 410 });
+        await listEntered.promise;
+        await informer.stop();
+
+        // This successful LIST follows a retry, which used to bypass the final stopped check.
+        pendingList.resolve({
+            metadata: { resourceVersion: '23456' },
+            items: [{ metadata: { name: 'late-result', resourceVersion: '23456' } }],
+        });
+        await reconnecting;
+        strictEqual(listCalls, 3);
+        strictEqual(watches.length, 1);
+        strictEqual(watches[0].controller.signal.aborted, true);
+        strictEqual(informer.get('late-result'), undefined);
+        deepStrictEqual(changes, []);
+    });
+
+    for (const restart of [false, true]) {
+        it(`should abort a pending watch that connects after ${restart ? 'restarting' : 'stopping'}`, async (t) => {
+            const pendingWatch = deferred<AbortController>();
+            const watchEntered = deferred();
+            const { informer, watches } = lifecycleCache(t, {
+                connect: async (controller) => {
+                    if (watches.length === 1) {
+                        watchEntered.resolve();
+                        return pendingWatch.promise;
+                    }
+                    return controller;
+                },
+            });
+            const starting = informer.start();
+            await watchEntered.promise;
+            await informer.stop();
+            if (restart) {
+                await informer.start();
+            }
+
+            // stop() could not abort this controller because watch() had not returned it yet.
+            pendingWatch.resolve(watches[0].controller);
+            await starting;
+            strictEqual(watches[0].controller.signal.aborted, true);
+            strictEqual(watches.length, restart ? 2 : 1);
+            if (restart) {
+                strictEqual(watches[1].controller.signal.aborted, false);
+                await informer.stop();
+                strictEqual(watches[1].controller.signal.aborted, true);
+            }
+        });
+    }
 
     it('should not back off between repeated TimeoutErrors', async () => {
         const fakeWatch = mock.mock(Watch);
@@ -1896,7 +2059,7 @@ describe('delete items', () => {
         strictEqual(await connectPromise, true);
     });
 
-    it('does calls connect after a restart after an error', async () => {
+    it('calls connect after manually restarting from a non-retryable error', async () => {
         const fakeWatch = mock.mock(Watch);
         const list: V1Pod[] = [
             {
@@ -1940,7 +2103,7 @@ describe('delete items', () => {
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
-        const error = new Error('testing');
+        const error = Object.assign(new Error('Bad Request'), { statusCode: 400 });
         await doneHandler(error);
 
         mock.verify(
@@ -1960,7 +2123,7 @@ describe('delete items', () => {
 
     it('should correctly handle errors in the initial list', async () => {
         const fake = mock.mock(Watch);
-        const requestErr = Error('request failed');
+        const requestErr = Object.assign(Error('request failed'), { statusCode: 400 });
         const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
             return new Promise<V1NamespaceList>((resolve, reject) => {
                 reject(requestErr);
