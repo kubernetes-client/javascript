@@ -115,6 +115,29 @@ To run tests:
 npm test
 ```
 
+### End-to-end tests
+
+The end-to-end suite requires a reachable Kubernetes cluster and uses the current
+kubeconfig context. Use a disposable [KIND](https://kind.sigs.k8s.io/) cluster:
+
+```console
+kind create cluster --name client-node-e2e --wait 120s
+npm run e2e-test
+kind delete cluster --name client-node-e2e
+```
+
+Tests create an isolated, uniquely named namespace and delete it afterward. They
+exercise ConfigMap create/read/list/update/delete operations through both the
+generated JSON client and kubeconfig-authenticated protobuf requests. Protobuf
+tests validate the response content type, Kubernetes binary envelope, and decoded
+resource data; they do not accept a JSON fallback. The generated API client itself
+still uses JSON; the tests use a small protobuf schema for binary requests.
+
+The validation workflow runs this suite against KIND. The
+`.github/workflows/copilot-setup-steps.yml` workflow also installs dependencies,
+creates a KIND cluster, and runs the suite before Copilot starts, leaving the
+cluster available for subsequent `npm run e2e-test` runs.
+
 ## Contact
 
 You can reach the maintainers of this project at:

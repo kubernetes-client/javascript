@@ -27,6 +27,7 @@
         "test-no-coverage": "node --test --test-reporter=spec --import tsx src/*_test.ts",
         "test-transpiled": "node --test --test-reporter=spec dist/*_test.js",
         "integration-test": "tsx src/test/integration/index.ts",
+        "e2e-test": "node --test --test-reporter=spec --import tsx src/test/e2e/*_test.ts",
         "prepare": "npm run build && husky",
         "prepack": "npm run build",
         "docs": "npm --prefix ./tools/docs ci && npm --prefix ./tools/docs run docs"
@@ -82,6 +83,7 @@
         "mock-fs": "^5.2.0",
         "prettier": "^3.0.0",
         "pretty-quick": "^4.0.0",
+        "protobufjs": "^7.5.4",
         "ts-mockito": "^2.3.1",
         "ts-proto": "^2.12.1",
         "tsx": "^4.21.0",
