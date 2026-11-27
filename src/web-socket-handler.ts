@@ -3,6 +3,7 @@ import stream from 'node:stream';
 
 import { V1Status } from './api.js';
 import { KubeConfig } from './config.js';
+import { createDoneOnce } from './util.js';
 
 const protocols = [
     'v5.channel.k8s.io',
@@ -17,6 +18,7 @@ export interface WebSocketInterface {
         path: string,
         textHandler: ((text: string) => boolean) | null,
         binaryHandler: ((stream: number, buff: Buffer) => boolean) | null,
+        done?: (err: any) => void,
     ): Promise<WebSocket.WebSocket>;
 }
 
@@ -85,6 +87,7 @@ export class WebSocketHandler implements WebSocketInterface {
         ws: WebSocket.WebSocket,
         stdin: stream.Readable,
         streamNum: number = 0,
+        done?: (err: any) => void,
     ): boolean {
         stdin.on('data', (data) => {
             ws.send(copyChunkForWebSocket(streamNum, data, stdin.readableEncoding));
@@ -100,8 +103,58 @@ export class WebSocketHandler implements WebSocketInterface {
             }
             ws.close();
         });
+        stdin.on('error', (err) => {
+            done?.(err);
+            ws.close();
+        });
         // Keep the stream open
         return true;
+    }
+
+    public static statusError(status: V1Status): Error | null {
+        if (status.status === 'Failure' || status.reason === 'NonZeroExitCode') {
+            return new Error(status.message || status.reason || 'Remote command failed');
+        }
+        return null;
+    }
+
+    public static async connectStandardStreams(
+        handler: WebSocketInterface,
+        path: string,
+        stdout: stream.Writable | null,
+        stderr: stream.Writable | null,
+        stdin: stream.Readable | null,
+        resizeStream: stream.Readable | null,
+        statusCallback?: (status: V1Status) => void,
+        done?: (err: any) => void,
+    ): Promise<WebSocket.WebSocket> {
+        const doneOnce = createDoneOnce(done);
+        stdout?.once('error', doneOnce);
+        stderr?.once('error', doneOnce);
+
+        const handleOutput = (streamNum: number, buff: Buffer): boolean => {
+            const status = WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
+            if (status != null) {
+                if (statusCallback) {
+                    statusCallback(status);
+                }
+                doneOnce(WebSocketHandler.statusError(status));
+                return false;
+            }
+            return true;
+        };
+
+        const conn = done
+            ? await handler.connect(path, null, handleOutput, doneOnce)
+            : await handler.connect(path, null, handleOutput);
+
+        if (stdin != null) {
+            WebSocketHandler.handleStandardInput(conn, stdin, WebSocketHandler.StdinStream, doneOnce);
+        }
+        if (resizeStream != null) {
+            WebSocketHandler.handleStandardInput(conn, resizeStream, WebSocketHandler.ResizeStream, doneOnce);
+        }
+        return conn;
     }
 
     public static async processData(
@@ -139,6 +192,7 @@ export class WebSocketHandler implements WebSocketInterface {
         retryCount: number = 3,
         // kind of hacky, but otherwise we can't wait for the writes to flush before testing.
         addFlushForTesting: boolean = false,
+        done?: (err: any) => void,
     ): () => WebSocket.WebSocket | null {
         if (retryCount < 0) {
             throw new Error("retryCount can't be lower than 0.");
@@ -147,16 +201,23 @@ export class WebSocketHandler implements WebSocketInterface {
         let ws: WebSocket.WebSocket | null = null;
 
         stdin.on('data', (data) => {
-            queue = queue.then(async () => {
-                ws = await WebSocketHandler.processData(
-                    data,
-                    ws,
-                    createWS,
-                    streamNum,
-                    retryCount,
-                    stdin.readableEncoding,
-                );
-            });
+            queue = queue
+                .then(async () => {
+                    ws = await WebSocketHandler.processData(
+                        data,
+                        ws,
+                        createWS,
+                        streamNum,
+                        retryCount,
+                        stdin.readableEncoding,
+                    );
+                })
+                .catch((err) => {
+                    done?.(err);
+                    if (ws !== null) {
+                        ws.close();
+                    }
+                });
         });
 
         if (addFlushForTesting) {
@@ -166,6 +227,12 @@ export class WebSocketHandler implements WebSocketInterface {
         }
 
         stdin.on('end', () => {
+            if (ws !== null) {
+                ws.close();
+            }
+        });
+        stdin.on('error', (err) => {
+            done?.(err);
             if (ws !== null) {
                 ws.close();
             }
@@ -213,6 +280,7 @@ export class WebSocketHandler implements WebSocketInterface {
         path: string,
         textHandler: ((text: string) => boolean) | null,
         binaryHandler: ((stream: number, buff: Buffer) => boolean) | null,
+        done?: (err: any) => void,
     ): Promise<WebSocket.WebSocket> {
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
@@ -233,6 +301,7 @@ export class WebSocketHandler implements WebSocketInterface {
                 ? this.socketFactory(uri, protocols, opts)
                 : new WebSocket(uri, protocols, opts);
             let resolved = false;
+            const doneOnce = createDoneOnce(done);
 
             client.onopen = () => {
                 resolved = true;
@@ -242,25 +311,47 @@ export class WebSocketHandler implements WebSocketInterface {
             client.onerror = (err) => {
                 if (!resolved) {
                     reject(err);
+                } else {
+                    doneOnce(err);
                 }
             };
 
+            client.onclose = () => {
+                doneOnce(null);
+            };
+
             client.onmessage = ({ data }: { data: WebSocket.Data }) => {
-                // TODO: support ArrayBuffer and Buffer[] data types?
-                if (typeof data === 'string') {
-                    if (data.charCodeAt(0) === WebSocketHandler.CloseStream) {
-                        WebSocketHandler.closeStream(data.charCodeAt(1), this.streams);
+                try {
+                    // TODO: support ArrayBuffer and Buffer[] data types?
+                    if (typeof data === 'string') {
+                        if (data.charCodeAt(0) === WebSocketHandler.CloseStream) {
+                            WebSocketHandler.closeStream(data.charCodeAt(1), this.streams);
+                            return;
+                        }
+                        if (textHandler && !textHandler(data)) {
+                            client.close();
+                        }
+                    } else if (data instanceof Buffer) {
+                        if (data.length < 1) {
+                            return;
+                        }
+                        const streamNum = data.readUint8(0);
+                        if (streamNum === WebSocketHandler.CloseStream) {
+                            if (data.length > 1) {
+                                WebSocketHandler.closeStream(data.readInt8(1), this.streams);
+                            }
+                            return;
+                        }
+                        if (binaryHandler && !binaryHandler(streamNum, data.slice(1))) {
+                            client.close();
+                        }
                     }
-                    if (textHandler && !textHandler(data)) {
+                } catch (err) {
+                    doneOnce(err);
+                    try {
                         client.close();
-                    }
-                } else if (data instanceof Buffer) {
-                    const streamNum = data.readUint8(0);
-                    if (streamNum === WebSocketHandler.CloseStream) {
-                        WebSocketHandler.closeStream(data.readInt8(1), this.streams);
-                    }
-                    if (binaryHandler && !binaryHandler(streamNum, data.slice(1))) {
-                        client.close();
+                    } catch {
+                        // Ignore close errors while handling an existing stream error.
                     }
                 }
             };

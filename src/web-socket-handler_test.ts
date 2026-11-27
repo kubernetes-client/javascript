@@ -291,6 +291,133 @@ describe('WebSocket', () => {
             strictEqual(datum, fill);
         }
     });
+    it('should call done once after connection errors and closes', async () => {
+        const kc = new KubeConfig();
+        const host = 'foo.company.com';
+        const server = `https://${host}`;
+        kc.clusters = [
+            {
+                name: 'cluster',
+                server,
+            } as Cluster,
+        ] as Cluster[];
+        kc.contexts = [
+            {
+                cluster: 'cluster',
+                user: 'user',
+            } as Context,
+        ] as Context[];
+        kc.users = [
+            {
+                name: 'user',
+            } as User,
+        ];
+
+        const mockWs = {} as WebSocket.WebSocket;
+        const handler = new WebSocketHandler(kc, (): WebSocket.WebSocket => {
+            return mockWs;
+        });
+
+        let doneCount = 0;
+        let doneErr: any;
+        const promise = handler.connect('/some/path', null, null, (err: any) => {
+            doneCount += 1;
+            doneErr = err;
+        });
+        await setImmediatePromise();
+        mockWs.onopen!({ target: mockWs, type: 'open' });
+        await promise;
+
+        const errEvt = {
+            error: {},
+            message: 'some message',
+            type: 'some type',
+            target: mockWs,
+        };
+        mockWs.onerror!(errEvt);
+        mockWs.onclose!({ target: mockWs, type: 'close', wasClean: false, code: 1006, reason: '' });
+
+        strictEqual(doneCount, 1);
+        strictEqual(doneErr, errEvt);
+    });
+    it('should connect standard streams through the shared utility', async () => {
+        const stdout = new WritableStreamBuffer();
+        const stderr = new WritableStreamBuffer();
+        const stdin = new ReadableStreamBuffer();
+        const resize = new ReadableStreamBuffer();
+        const sent: Buffer[] = [];
+        const ws = {
+            protocol: 'v5.channel.k8s.io',
+            send: (data) => {
+                sent.push(data as Buffer);
+            },
+            close: () => {},
+        } as WebSocket.WebSocket;
+
+        let pathOut = '';
+        let binaryHandler: ((stream: number, buff: Buffer) => boolean) | null = null;
+        let doneHandler: ((err: any) => void) | undefined;
+        const handler = {
+            connect: async (
+                path: string,
+                textHandler: ((text: string) => boolean) | null,
+                binary: ((stream: number, buff: Buffer) => boolean) | null,
+                done?: (err: any) => void,
+            ): Promise<WebSocket.WebSocket> => {
+                strictEqual(textHandler, null);
+                pathOut = path;
+                binaryHandler = binary;
+                doneHandler = done;
+                return ws;
+            },
+        };
+
+        let statusOut: V1Status | undefined;
+        let doneCount = 0;
+        let doneErr: any = undefined;
+        const conn = await WebSocketHandler.connectStandardStreams(
+            handler,
+            '/exec',
+            stdout,
+            stderr,
+            stdin,
+            resize,
+            (status) => {
+                statusOut = status;
+            },
+            (err) => {
+                doneCount++;
+                doneErr = err;
+            },
+        );
+
+        strictEqual(conn, ws);
+        strictEqual(pathOut, '/exec');
+        strictEqual(typeof binaryHandler, 'function');
+        strictEqual(typeof doneHandler, 'function');
+
+        strictEqual(binaryHandler!(WebSocketHandler.StdoutStream, Buffer.from('out')), true);
+        strictEqual(binaryHandler!(WebSocketHandler.StderrStream, Buffer.from('err')), true);
+        strictEqual(stdout.getContentsAsString(), 'out');
+        strictEqual(stderr.getContentsAsString(), 'err');
+
+        stdin.emit('data', 'input');
+        resize.emit('data', 'resize');
+        deepStrictEqual(sent[0], Buffer.from('\x00input'));
+        deepStrictEqual(sent[1], Buffer.from('\x04resize'));
+
+        const status = { status: 'Success', message: 'ok' } as V1Status;
+        strictEqual(
+            binaryHandler!(WebSocketHandler.StatusStream, Buffer.from(JSON.stringify(status))),
+            false,
+        );
+        deepStrictEqual(statusOut, status);
+        strictEqual(doneCount, 1);
+        strictEqual(doneErr, null);
+
+        doneHandler!(new Error('late error'));
+        strictEqual(doneCount, 1);
+    });
     it('handles multi-byte characters', () => {
         return new Promise<void>((resolve) => {
             const stream = new Readable({ read() {} });
